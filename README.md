@@ -37,11 +37,11 @@ To see how you can add code functions, see below:
 
 ### Source code location
 
-https://github.com/chari00/Timed-Quiz
+https://github.com/chari00/Weather-Dashboard
 
 ### Deployed website URL
 
-https://chari00.github.io/Timed-Quiz/
+https://chari00.github.io/Weather-Dashboard/
 
 ## 6. Resources
 
