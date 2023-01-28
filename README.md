@@ -25,7 +25,9 @@
 ## 3. Built with:
 
 - javascript
+- moment.js
 - local storage
+- bootstrap
 - html
 - css
 
@@ -48,6 +50,12 @@ https://chari00.github.io/Weather-Dashboard/
 ### URL for resources
 
 - https://getbootstrap.com/docs/4.0/components/card/
+
+- https://www.freecodecamp.org/news/event-delegation-javascript/
+
+- https://momentjscom.readthedocs.io/en/latest/moment/01-parsing/08-unix-timestamp/
+
+- https://openweathermap.org/forecast5#geocoding
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
