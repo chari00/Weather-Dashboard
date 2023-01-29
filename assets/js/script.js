@@ -6,29 +6,43 @@ let inputContainer = document.querySelector(".input-group");
 let today = document.querySelector("#today");
 let forecast = document.querySelector("#forecast");
 let searchBtnParent = document.querySelector(".input-group-append");
-let cityHistory = document.querySelector("#history");
-//let city = searchInput.value;
-
-// let queryURLCity =
-//   `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
-//   APIKey;
-
-let cities = [];
-// create event listener to searchBtn
-// use event deligation to pull out the string from the button use '(event.target.textContent)'
+let cityArr = [];
+//let localStorageIndex = 0;
 
 searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  cityHistory.innerHTML = "";
-  // if (event.target.matches("button")) {
-  //   searchForm.append(searchBtnParent);
+  // cityHistory.innerHTML = "";
   event.target.textContext;
   let city = searchInput.value;
+  var localStorageIndex = JSON.parse(localStorage.getItem("history"));
+  var localStoragelength = 0;
+
+  if (localStorageIndex != null) {
+    var localStoragelength = localStorageIndex.length;
+  }
+
+  if (localStoragelength < 5) {
+    //console.log("Index = " + localStorageIndex);
+    console.log("Length" + localStoragelength);
+    cityArr[localStoragelength] = city;
+  } else {
+    //reorder and replace localstorage items
+    // for i = length - 1; i = 1 ; i--
+    // get item 3 and copy to 4.. repeat until 0 is copied to 1
+    // loop
+    //
+
+    cityArr[0] = city;
+  }
+
   let queryURLCity =
     `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
     APIKey;
   // console.log(queryURLCity);
+
+  setLocalStorage(cityArr);
   getCityWeather(queryURLCity);
+  populateHistory();
 });
 
 function getCityWeather(queryURLCity) {
@@ -57,6 +71,24 @@ function getCityWeather(queryURLCity) {
 
 // get the city in the user input  to display innerHTML  as the head city in dashboard
 
+function setLocalStorage(cityIn) {
+  localStorage.setItem("history", JSON.stringify(cityIn));
+  //localStorage.key();
+}
+
+function getFromLocalStorage() {
+  return JSON.parse(localStorage.getItem("history"));
+}
+// populate the search history and diplay it to the left side of the page.
+function populateHistory() {
+  let listEl = document.querySelector("#history");
+  for (let i = 0; i < listEl.length; i++) {
+    // let cityInHistory = JSON.parse(localStorage.getItem("history"));
+
+    history.innerHTML = history;
+  }
+}
+
 function weatherHead(weatherData) {
   let headCityName = weatherData.city.name;
   let weatherIcon = weatherData.list[0].weather[0].icon;
@@ -71,8 +103,9 @@ function weatherHead(weatherData) {
   )}) <img src=${iconUrl}
   </h2>
     <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
-  <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
+    <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
   <p>Humidity: ${weatherData.list[0].main.humidity}%</p>`;
+
   today.innerHTML = currentCityWeather;
   // console.log(currentCityWeather);
 }
