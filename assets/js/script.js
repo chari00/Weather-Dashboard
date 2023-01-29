@@ -36,7 +36,7 @@ searchBtn.addEventListener("click", (event) => {
   }
 
   let queryURLCity =
-    `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
+    `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
     APIKey;
   // console.log(queryURLCity);
 
@@ -73,7 +73,6 @@ function getCityWeather(queryURLCity) {
 
 function setLocalStorage(cityIn) {
   localStorage.setItem("history", JSON.stringify(cityIn));
-  //localStorage.key();
 }
 
 function getFromLocalStorage() {
