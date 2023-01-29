@@ -24,19 +24,14 @@ searchBtn.addEventListener("click", (event) => {
   //   searchForm.append(searchBtnParent);
   event.target.textContext;
   let city = searchInput.value;
-  let queryURLCityIn =
+  let queryURLCity =
     `http://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
     APIKey;
-  console.log(queryURLCityIn);
-  //let weatherDataIn = getCityWeather(queryURLCityIn);
-  getCityWeather(queryURLCityIn);
-  //console.log(weatherDataIn);
-  //cityWeatherHead();
-  // }
+  // console.log(queryURLCity);
+  getCityWeather(queryURLCity);
 });
 
 function getCityWeather(queryURLCity) {
-  console.log("in getcityweather");
   fetch(queryURLCity)
     .then((response) => response.json())
     .then((citiesFound) => {
@@ -44,16 +39,15 @@ function getCityWeather(queryURLCity) {
       let queryURLLatLon =
         `https://api.openweathermap.org/data/2.5/forecast?lat=${firstCity.lat}&lon=${firstCity.lon}&appid=` +
         APIKey;
-      console.log(firstCity.lat);
-      console.log(firstCity.lon);
+      // console.log(firstCity.lat);
+      // console.log(firstCity.lon);
       return fetch(queryURLLatLon);
     })
     .then((response) => response.json())
     .then((weatherData) => {
       console.log(weatherData);
-      cityWeatherHead(weatherData);
+      weatherHead(weatherData);
     });
-  //return fetch(queryURLLatLon);
 }
 //function to get the weather info for current city on  search.
 // * Create a weather dashboard with form inputs.
@@ -61,25 +55,26 @@ function getCityWeather(queryURLCity) {
 //    * The city name,date,icon representation of weather conditions,temperature,
 //     humidity, wind speed
 
-// Set function to get the city in the user input  to display innerHTML  as the head city
+// get the city in the user input  to display innerHTML  as the head city in dashboard
 
-function cityWeatherHead(weatherData) {
-  console.log("in cityWeatherHead");
+function weatherHead(weatherData) {
   let headCityName = weatherData.city.name;
   let weatherIcon = weatherData.list[0].weather[0].icon;
   let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-  console.log(headCityName);
+  const celsiusTemp = weatherData.list[0].main.temp - 273.15;
+  // console.log(headCityName);
+  // console.log(celsiusTemp);
 
-  let currentCityWeather = `  <h2>
+  let currentCityWeather = `<h2>
   ${headCityName}(${moment(weatherData.dt).format(
     "DD/MM/YYYY"
   )}) <img src=${iconUrl}
   </h2>
-  <p>Temp</p>
-  <p>Wind</p>
-  <p>Humidity</p>`;
-  console.log(currentCityWeather);
+    <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
+  <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
+  <p>Humidity: ${weatherData.list[0].main.humidity}%</p>`;
   today.innerHTML = currentCityWeather;
+  // console.log(currentCityWeather);
 }
 //   * When a user searches for a city they are presented with current and future
 //conditions for that city and that city is added to the search history
