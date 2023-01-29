@@ -63,6 +63,8 @@ https://chari00.github.io/Weather-Dashboard/
 
 - https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage
 
+- https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+
 ## 7. License
 
 This project is licensed by MIT.
