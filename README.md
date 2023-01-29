@@ -1,4 +1,4 @@
-# Timed Quiz
+# Weather Dashboard
 
 ## Table of Content
 
@@ -11,6 +11,8 @@
 7. License
 
 ## 1. Description
+
+A Weather App where user can see the weather outlook for multiple cities.These help the users plan their trips accordingly around the upcoming weather forecast.
 
 ## 2. Visual
 
@@ -50,6 +52,8 @@ https://chari00.github.io/Weather-Dashboard/
 ### URL for resources
 
 - https://getbootstrap.com/docs/4.0/components/card/
+
+- https://www.w3schools.com/howto/howto_js_temperature_converter.asp
 
 - https://www.freecodecamp.org/news/event-delegation-javascript/
 
