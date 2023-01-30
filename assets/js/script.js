@@ -4,18 +4,24 @@ let searchForm = document.querySelector("#search-form");
 let searchBtn = document.querySelector("#search-button");
 let inputContainer = document.querySelector(".input-group");
 let today = document.querySelector("#today");
+let day1 = document.querySelector("#day1");
+let day2 = document.querySelector("#day2");
+let day3 = document.querySelector("#day3");
+let day4 = document.querySelector("#day4");
+let day5 = document.querySelector("#day5");
 let forecast = document.querySelector("#forecast");
 let searchBtnParent = document.querySelector(".input-group-append");
+let searchHistory = document.querySelector("#search-history");
 let cityArr = [];
 //let localStorageIndex = 0;
 
+let localStoragelength = 0;
 searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
   // cityHistory.innerHTML = "";
   event.target.textContext;
   let city = searchInput.value;
-  var localStorageIndex = JSON.parse(localStorage.getItem("history"));
-  var localStoragelength = 0;
+  let localStorageIndex = JSON.parse(localStorage.getItem("history"));
 
   if (localStorageIndex != null) {
     var localStoragelength = localStorageIndex.length;
@@ -42,7 +48,9 @@ searchBtn.addEventListener("click", (event) => {
 
   setLocalStorage(cityArr);
   getCityWeather(queryURLCity);
+  nextDayWeather(queryURLCity);
   populateHistory();
+  getFromLocalStorage();
 });
 
 function getCityWeather(queryURLCity) {
@@ -59,7 +67,9 @@ function getCityWeather(queryURLCity) {
     })
     .then((response) => response.json())
     .then((weatherData) => {
-      console.log(weatherData);
+      console.log(weatherData.list[4].weather[0].icon);
+      var dataWeather = weatherData.list[4].weather[0].icon;
+      nextDayWeather(dataWeather);
       weatherHead(weatherData);
     });
 }
@@ -76,6 +86,9 @@ function setLocalStorage(cityIn) {
 }
 
 function getFromLocalStorage() {
+  console.log(localStorage.getItem("history"));
+  var history = localStorage.getItem("history");
+  searchHistory.textContent = history;
   return JSON.parse(localStorage.getItem("history"));
 }
 // populate the search history and diplay it to the left side of the page.
@@ -108,6 +121,11 @@ function weatherHead(weatherData) {
   today.innerHTML = currentCityWeather;
   // console.log(currentCityWeather);
 }
+function nextDayWeather(weatherData) {
+  let nextDay = moment().format("DD / MM / YYYY");
+  let icon1 = weatherData;
+  // console.log(weatherData.list);
+}
 //   * When a user searches for a city they are presented with current and future
 //conditions for that city and that city is added to the search history
 //   * When a user view future weather conditions for that city they are
@@ -118,3 +136,15 @@ function weatherHead(weatherData) {
 //presented with current and future conditions for that city
 //persit data to local storage to get items when user clicked
 //a city name in search history
+// let headCityName = weatherData.city.name;
+// let weatherIcon = weatherData.list[3].weather[0].icon;
+// let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
+// const celsiusTemp = weatherData.list[3].main.temp - 273.15;
+// let nextWeather = `<h5>
+// ${moment(weatherData.list[3].dt).format("DD/MM/YYYY")}) <img src=${iconUrl}
+// </h5>
+//   <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
+//   <p>Wind: ${weatherData.list[3].wind.speed} KPH</p>
+// <p>Humidity: ${weatherData.list[3].main.humidity}%</p>`;
+// nextDay.innerHTML = nextWeather;
+// console.log("test ");
