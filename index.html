@@ -55,6 +55,7 @@
 
                   <hr class="hr weather-hr" />
                 </div>
+                <div id="search-history"></div>
                 <!-- <div>
                   <h1>
                     ${headCity}(${moment(weatherData.dt).format( "DD/MM/YYYY"
@@ -83,63 +84,65 @@
             role="region"
             aria-live="polite"
           >
-            <div class="card" style="width: 12rem">
-              <!-- <img class="card-img-top" src="..." alt="Card image cap" /> -->
+            <!-- 5-day forecast that displays -->
+            <div id="day1" class="card" style="width: 12rem">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <!-- <p class="card-text">
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </p> -->
+                <h5 class="card-title">next date</h5>
+
+                <img class="card-img-top" src="..." alt="Card image cap" />
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-              <!-- <div class="card-body">
-                <a href="#" class="card-link">Card link</a>
-                <a href="#" class="card-link">Another link</a>
-              </div> -->
-            </div>
-            <div class="card" style="width: 12rem">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-              </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Temp:</li>
+                <li class="list-group-item">Wind:</li>
+                <li class="list-group-item">Humidity:</li>
               </ul>
             </div>
-            <div class="card" style="width: 12rem">
+            <div id="day2" class="card" style="width: 12rem">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">next date</h5>
+
+                <img class="card-img-top" src="..." alt="Card image cap" />
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Temp:</li>
+                <li class="list-group-item">Wind:</li>
+                <li class="list-group-item">Humidity:</li>
               </ul>
             </div>
-            <div class="card" style="width: 12rem">
+            <div id="day3" class="card" style="width: 12rem">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">next date</h5>
+
+                <img class="card-img-top" src="..." alt="Card image cap" />
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Temp:</li>
+                <li class="list-group-item">Wind:</li>
+                <li class="list-group-item">Humidity:</li>
               </ul>
             </div>
-            <div class="card" style="width: 12rem">
+            <div id="day4" class="card" style="width: 12rem">
               <div class="card-body">
-                <h5 class="card-title">Card title</h5>
+                <h5 class="card-title">next date</h5>
+
+                <img class="card-img-top" src="..." alt="Card image cap" />
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                <li class="list-group-item">Temp:</li>
+                <li class="list-group-item">Wind:</li>
+                <li class="list-group-item">Humidity:</li>
+              </ul>
+            </div>
+            <div id="day5" class="card" style="width: 12rem">
+              <div class="card-body">
+                <h5 class="card-title">next date</h5>
+
+                <img class="card-img-top" src="..." alt="Card image cap" />
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">Temp:</li>
+                <li class="list-group-item">Wind:</li>
+                <li class="list-group-item">Humidity:</li>
               </ul>
             </div>
           </section>
