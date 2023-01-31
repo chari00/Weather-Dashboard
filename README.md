@@ -16,13 +16,13 @@ A Weather App where user can see the weather outlook for multiple cities.These h
 
 ## 2. Visual
 
-### Image of the project in console view.
+### Image of the project in local storage view.
+
+- <img src="/assets/images/view-localstorage.png">
 
 ### Image of the project in Webpage view.
 
-#### When Start Quiz button is clicked, timer starts counting.
-
-- <img src="/assets/images/score.png">
+- <img src="/assets/images/image-web.png">
 
 ## 3. Built with:
 
@@ -36,6 +36,37 @@ A Weather App where user can see the weather outlook for multiple cities.These h
 ## 4. What I learned
 
 To see how you can add code functions, see below:
+
+\*\* function setLocalStorage(cityIn) {
+localStorage.setItem("history", JSON.stringify(cityIn));
+}
+
+function getFromLocalStorage() {
+console.log(localStorage.getItem("history"));
+var history = localStorage.getItem("history");
+searchHistory.textContent = history;
+return JSON.parse(localStorage.getItem("history"));
+}
+
+\*\* let day02 = moment(1675317600, "X").format("DD / MM / YYYY ");
+let dataWeather2 = weatherData.list[13].weather[0].icon;
+let icon2 = `https://openweathermap.org/img/wn/${dataWeather2}@2x.png`;
+let nextTemp2 = Math.floor(weatherData.list[13].main.temp - 273.15);
+// console.log("date" + day02 + " icon " + icon2 + " temp " + nextTemp2);
+let day2Weather = `<div  class="card" style="width: 12rem">
+
+  <div class="card-body">
+    <h5 class="card-title">${day02}</h5>
+    <img class="card-img-top" src="${icon2}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp2} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[13].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity: ${weatherData.list[13].main.humidity} %</li>
+  </ul>
+</div>`;
+
+day2.innerHTML = day2Weather;
 
 ## 5. Links
 
