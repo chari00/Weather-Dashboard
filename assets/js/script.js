@@ -48,7 +48,7 @@ searchBtn.addEventListener("click", (event) => {
 
   setLocalStorage(cityArr);
   getCityWeather(queryURLCity);
-  nextDayWeather(queryURLCity);
+  nextWeather(queryURLCity);
   populateHistory();
   getFromLocalStorage();
 });
@@ -67,10 +67,10 @@ function getCityWeather(queryURLCity) {
     })
     .then((response) => response.json())
     .then((weatherData) => {
-      console.log(weatherData.list[4].weather[0].icon);
-      var dataWeather = weatherData.list[4].weather[0].icon;
-      nextDayWeather(dataWeather);
+      // console.log(weatherData.list[5].weather[0].icon);
+      nextWeather(weatherData);
       weatherHead(weatherData);
+      console.log(weatherData);
     });
 }
 //function to get the weather info for current city on  search.
@@ -91,41 +91,136 @@ function getFromLocalStorage() {
   searchHistory.textContent = history;
   return JSON.parse(localStorage.getItem("history"));
 }
-// populate the search history and diplay it to the left side of the page.
-function populateHistory() {
-  let listEl = document.querySelector("#history");
-  for (let i = 0; i < listEl.length; i++) {
-    // let cityInHistory = JSON.parse(localStorage.getItem("history"));
-
-    history.innerHTML = history;
-  }
-}
 
 function weatherHead(weatherData) {
   let headCityName = weatherData.city.name;
   let weatherIcon = weatherData.list[0].weather[0].icon;
   let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-  const celsiusTemp = weatherData.list[0].main.temp - 273.15;
+  let celsiusTemp = weatherData.list[0].main.temp - 273.15;
   // console.log(headCityName);
   // console.log(celsiusTemp);
 
   let currentCityWeather = `<h2>
-  ${headCityName}(${moment(weatherData.dt).format(
+    ${headCityName}(${moment(weatherData.dt).format(
     "DD/MM/YYYY"
   )}) <img src=${iconUrl}
-  </h2>
-    <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
-    <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
-  <p>Humidity: ${weatherData.list[0].main.humidity}%</p>`;
+      </h2>
+      <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
+      <p>Wind: ${weatherData.list[0].wind.speed} KPH</p>
+      <p>Humidity: ${weatherData.list[0].main.humidity}%</p>`;
 
   today.innerHTML = currentCityWeather;
   // console.log(currentCityWeather);
 }
-function nextDayWeather(weatherData) {
-  let nextDay = moment().format("DD / MM / YYYY");
-  let icon1 = weatherData;
-  // console.log(weatherData.list);
+function nextWeather(weatherData) {
+  let nextDay = moment(1675231200, "X").format("DD / MM / YYYY hh:mm");
+  let dataWeather = weatherData.list[5].weather[0].icon;
+  let icon1 = `https://openweathermap.org/img/wn/${dataWeather}@2x.png`;
+  let nextTemp = Math.floor(weatherData.list[5].main.temp - 273.15);
+
+  console.log("date" + nextDay + " icon " + icon1 + " temp " + nextTemp);
+
+  let nextDayWeather = `<div  class="card" style="width: 12rem">
+  <div class="card-body">
+    <h5 class="card-title">${nextDay}</h5>
+
+    <img class="card-img-top" src="${icon1}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[5].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity:${weatherData.list[5].main.humidity}%</li>
+  </ul>
+</div>`;
+
+  day1.innerHTML = nextDayWeather;
+
+  let day02 = moment(1675317600, "X").format("DD / MM / YYYY hh:mm");
+  let dataWeather2 = weatherData.list[13].weather[0].icon;
+  let icon2 = `https://openweathermap.org/img/wn/${dataWeather2}@2x.png`;
+  let nextTemp2 = Math.floor(weatherData.list[13].main.temp - 273.15);
+
+  console.log("date" + day02 + " icon " + icon2 + " temp " + nextTemp2);
+
+  let Day2Weather = `<div  class="card" style="width: 12rem">
+  <div class="card-body">
+    <h5 class="card-title">${day02}</h5>
+    <img class="card-img-top" src="${icon2}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp2} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[13].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity:${weatherData.list[13].main.humidity}%</li>
+  </ul>
+</div>`;
+
+  day2.innerHTML = Day2Weather;
+
+  let day03 = moment(1675404000, "X").format("DD / MM / YYYY hh:mm");
+  let dataWeather3 = weatherData.list[21].weather[0].icon;
+  let icon3 = `https://openweathermap.org/img/wn/${dataWeather3}@2x.png`;
+  let nextTemp3 = Math.floor(weatherData.list[21].main.temp - 273.15);
+
+  console.log("date" + day03 + " icon " + icon3 + " temp " + nextTemp3);
+
+  let Day3Weather = `<div  class="card" style="width: 12rem">
+  <div class="card-body">
+    <h5 class="card-title">${day03}</h5>
+    <img class="card-img-top" src="${icon3}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp3} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[21].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity:${weatherData.list[21].main.humidity}%</li>
+  </ul>
+</div>`;
+
+  day3.innerHTML = Day3Weather;
+
+  let day04 = moment(1675490400, "X").format("DD / MM / YYYY hh:mm");
+  let dataWeather4 = weatherData.list[29].weather[0].icon;
+  let icon4 = `https://openweathermap.org/img/wn/${dataWeather4}@2x.png`;
+  let nextTemp4 = Math.floor(weatherData.list[29].main.temp - 273.15);
+
+  console.log("date" + day04 + " icon " + icon4 + " temp " + nextTemp4);
+
+  let Day4Weather = `<div  class="card" style="width: 12rem">
+  <div class="card-body">
+    <h5 class="card-title">${day04}</h5>
+    <img class="card-img-top" src="${icon4}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp3} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[29].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity:${weatherData.list[29].main.humidity}%</li>
+  </ul>
+</div>`;
+
+  day4.innerHTML = Day4Weather;
+
+  let day05 = moment(1675576800, "X").format("DD / MM / YYYY hh:mm");
+  let dataWeather5 = weatherData.list[37].weather[0].icon;
+  let icon5 = `https://openweathermap.org/img/wn/${dataWeather5}@2x.png`;
+  let nextTemp5 = Math.floor(weatherData.list[37].main.temp - 273.15);
+
+  console.log("date" + day05 + " icon " + icon5 + " temp " + nextTemp5);
+
+  let Day5Weather = `<div  class="card" style="width: 12rem">
+  <div class="card-body">
+    <h5 class="card-title">${day05}</h5>
+    <img class="card-img-top" src="${icon4}" alt="Card image cap" />
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">Temp: ${nextTemp5} &#8451</li>
+    <li class="list-group-item">Wind: ${weatherData.list[37].wind.speed} KPH</li>
+    <li class="list-group-item">Humidity:${weatherData.list[37].main.humidity}%</li>
+  </ul>
+</div>`;
+
+  day5.innerHTML = Day5Weather;
 }
+
+// console.log(weatherData.list);
 //   * When a user searches for a city they are presented with current and future
 //conditions for that city and that city is added to the search history
 //   * When a user view future weather conditions for that city they are
