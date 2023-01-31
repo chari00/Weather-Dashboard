@@ -13,12 +13,10 @@ let forecast = document.querySelector("#forecast");
 let searchBtnParent = document.querySelector(".input-group-append");
 let searchHistory = document.querySelector("#search-history");
 let cityArr = [];
-//let localStorageIndex = 0;
 
 let localStoragelength = 0;
 searchBtn.addEventListener("click", (event) => {
   event.preventDefault();
-  // cityHistory.innerHTML = "";
   event.target.textContext;
   let city = searchInput.value;
   let localStorageIndex = JSON.parse(localStorage.getItem("history"));
@@ -28,7 +26,6 @@ searchBtn.addEventListener("click", (event) => {
   }
 
   if (localStoragelength < 5) {
-    //console.log("Index = " + localStorageIndex);
     console.log("Length" + localStoragelength);
     cityArr[localStoragelength] = city;
   } else {
@@ -45,12 +42,10 @@ searchBtn.addEventListener("click", (event) => {
     `https://api.openweathermap.org/geo/1.0/direct?q=${city}&limit=5&appid=` +
     APIKey;
   // console.log(queryURLCity);
-
   setLocalStorage(cityArr);
   getCityWeather(queryURLCity);
   nextWeather(queryURLCity);
-  populateHistory();
-  getFromLocalStorage();
+  getFromLocalStorage(history);
 });
 
 function getCityWeather(queryURLCity) {
@@ -67,37 +62,30 @@ function getCityWeather(queryURLCity) {
     })
     .then((response) => response.json())
     .then((weatherData) => {
-      // console.log(weatherData.list[5].weather[0].icon);
       nextWeather(weatherData);
       weatherHead(weatherData);
       console.log(weatherData);
     });
 }
-//function to get the weather info for current city on  search.
-// * Create a weather dashboard with form inputs.
-//   * When a user views the current weather conditions for that city they are presented with:
-//    * The city name,date,icon representation of weather conditions,temperature,
-//     humidity, wind speed
-
-// get the city in the user input  to display innerHTML  as the head city in dashboard
 
 function setLocalStorage(cityIn) {
   localStorage.setItem("history", JSON.stringify(cityIn));
 }
 
+// get the city in the user input  to display search history
 function getFromLocalStorage() {
   console.log(localStorage.getItem("history"));
-  var history = localStorage.getItem("history");
+  let history = localStorage.getItem("history");
   searchHistory.textContent = history;
   return JSON.parse(localStorage.getItem("history"));
 }
 
+//function to get the weather info for current city on  search.
 function weatherHead(weatherData) {
   let headCityName = weatherData.city.name;
   let weatherIcon = weatherData.list[0].weather[0].icon;
   let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
   let celsiusTemp = weatherData.list[0].main.temp - 273.15;
-  // console.log(headCityName);
   // console.log(celsiusTemp);
 
   let currentCityWeather = `<h2>
@@ -118,7 +106,7 @@ function nextWeather(weatherData) {
   let icon1 = `https://openweathermap.org/img/wn/${dataWeather}@2x.png`;
   let nextTemp = Math.floor(weatherData.list[5].main.temp - 273.15);
   // console.log("date" + nextDay + " icon " + icon1 + " temp " + nextTemp);
-  let nextDayWeather = `<div  class="card" style="width: 12rem">
+  let nextDayWeather = `<div  class="card" style="width: 11rem">
   <div class="card-body">
     <h5 class="card-title">${nextDay}</h5>
 
@@ -138,7 +126,7 @@ function nextWeather(weatherData) {
   let icon2 = `https://openweathermap.org/img/wn/${dataWeather2}@2x.png`;
   let nextTemp2 = Math.floor(weatherData.list[13].main.temp - 273.15);
   // console.log("date" + day02 + " icon " + icon2 + " temp " + nextTemp2);
-  let day2Weather = `<div  class="card" style="width: 12rem">
+  let day2Weather = `<div  class="card" style="width: 11rem">
   <div class="card-body">
     <h5 class="card-title">${day02}</h5>
     <img class="card-img-top" src="${icon2}" alt="Card image cap" />
@@ -157,7 +145,7 @@ function nextWeather(weatherData) {
   let icon3 = `https://openweathermap.org/img/wn/${dataWeather3}@2x.png`;
   let nextTemp3 = Math.floor(weatherData.list[21].main.temp - 273.15);
   // console.log("date" + day03 + " icon " + icon3 + " temp " + nextTemp3);
-  let day3Weather = `<div  class="card" style="width: 12rem">
+  let day3Weather = `<div  class="card" style="width: 11rem">
   <div class="card-body">
     <h5 class="card-title">${day03}</h5>
     <img class="card-img-top" src="${icon3}" alt="Card image cap" />
@@ -176,7 +164,7 @@ function nextWeather(weatherData) {
   let icon4 = `https://openweathermap.org/img/wn/${dataWeather4}@2x.png`;
   let nextTemp4 = Math.floor(weatherData.list[29].main.temp - 273.15);
   // console.log("date" + day04 + " icon " + icon4 + " temp " + nextTemp4);
-  let day4Weather = `<div  class="card" style="width: 12rem">
+  let day4Weather = `<div  class="card" style="width: 11rem">
   <div class="card-body">
     <h5 class="card-title">${day04}</h5>
     <img class="card-img-top" src="${icon4}" alt="Card image cap" />
@@ -195,7 +183,7 @@ function nextWeather(weatherData) {
   let icon5 = `https://openweathermap.org/img/wn/${dataWeather5}@2x.png`;
   let nextTemp5 = Math.floor(weatherData.list[37].main.temp - 273.15);
   // console.log("date" + day05 + " icon " + icon5 + " temp " + nextTemp5);
-  let day5Weather = `<div  class="card" style="width: 12rem">
+  let day5Weather = `<div  class="card" style="width: 11rem">
   <div class="card-body">
     <h5 class="card-title">${day05}</h5>
     <img class="card-img-top" src="${icon5}" alt="Card image cap" />
@@ -209,27 +197,3 @@ function nextWeather(weatherData) {
 
   day5.innerHTML = day5Weather;
 }
-
-// console.log(weatherData.list);
-//   * When a user searches for a city they are presented with current and future
-//conditions for that city and that city is added to the search history
-//   * When a user view future weather conditions for that city they are
-//presented with a 5-day forecast that displays:
-//     * The date,icon representation of weather conditions,temperature,humidity
-
-//   * When a user click on a city in the search history they are again
-//presented with current and future conditions for that city
-//persit data to local storage to get items when user clicked
-//a city name in search history
-// let headCityName = weatherData.city.name;
-// let weatherIcon = weatherData.list[3].weather[0].icon;
-// let iconUrl = `http://openweathermap.org/img/wn/${weatherIcon}@2x.png`;
-// const celsiusTemp = weatherData.list[3].main.temp - 273.15;
-// let nextWeather = `<h5>
-// ${moment(weatherData.list[3].dt).format("DD/MM/YYYY")}) <img src=${iconUrl}
-// </h5>
-//   <p>Temp:  ${Math.floor(celsiusTemp)} &#8451</p>
-//   <p>Wind: ${weatherData.list[3].wind.speed} KPH</p>
-// <p>Humidity: ${weatherData.list[3].main.humidity}%</p>`;
-// nextDay.innerHTML = nextWeather;
-// console.log("test ");
