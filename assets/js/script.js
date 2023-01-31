@@ -91,14 +91,6 @@ function getFromLocalStorage() {
   searchHistory.textContent = history;
   return JSON.parse(localStorage.getItem("history"));
 }
-// populate the search history and diplay it to the left side of the page.
-// function populateHistory() {
-//   let listEl = document.querySelector("#history");
-//   for (let i = 0; i < listEl.length; i++) {
-//     // let cityInHistory = JSON.parse(localStorage.getItem("history"));
-//     // history.innerHTML = history;
-//   }
-// }
 
 function weatherHead(weatherData) {
   let headCityName = weatherData.city.name;
@@ -128,7 +120,7 @@ function nextWeather(weatherData) {
 
   console.log("date" + nextDay + " icon " + icon1 + " temp " + nextTemp);
 
-  let nextDayWeather = `<div id="day1" class="card" style="width: 12rem">
+  let nextDayWeather = `<div  class="card" style="width: 12rem">
   <div class="card-body">
     <h5 class="card-title">${nextDay}</h5>
 
@@ -153,7 +145,6 @@ function nextWeather(weatherData) {
   let Day2Weather = `<div  class="card" style="width: 12rem">
   <div class="card-body">
     <h5 class="card-title">${day02}</h5>
-
     <img class="card-img-top" src="${icon2}" alt="Card image cap" />
   </div>
   <ul class="list-group list-group-flush">
@@ -175,7 +166,6 @@ function nextWeather(weatherData) {
   let Day3Weather = `<div  class="card" style="width: 12rem">
   <div class="card-body">
     <h5 class="card-title">${day03}</h5>
-
     <img class="card-img-top" src="${icon3}" alt="Card image cap" />
   </div>
   <ul class="list-group list-group-flush">
@@ -197,7 +187,6 @@ function nextWeather(weatherData) {
   let Day4Weather = `<div  class="card" style="width: 12rem">
   <div class="card-body">
     <h5 class="card-title">${day04}</h5>
-
     <img class="card-img-top" src="${icon4}" alt="Card image cap" />
   </div>
   <ul class="list-group list-group-flush">
@@ -219,7 +208,6 @@ function nextWeather(weatherData) {
   let Day5Weather = `<div  class="card" style="width: 12rem">
   <div class="card-body">
     <h5 class="card-title">${day05}</h5>
-
     <img class="card-img-top" src="${icon4}" alt="Card image cap" />
   </div>
   <ul class="list-group list-group-flush">
