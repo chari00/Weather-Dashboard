@@ -43,6 +43,7 @@
                   aria-labelledby="form-heading"
                   aria-controls="today forecast"
                 />
+
                 <div class="input-group-append">
                   <button
                     type="submit"
@@ -56,15 +57,6 @@
                   <hr class="hr weather-hr" />
                 </div>
                 <div id="search-history"></div>
-                <!-- <div>
-                  <h1>
-                    ${headCity}(${moment(weatherData.dt).format( "DD/MM/YYYY"
-                    )}) <img src=${iconURL}
-                  </h1>
-                  <p>Temp</p>
-                  <p>Wind</p>
-                  <p>Humidity</p>
-                </div> -->
               </div>
             </div>
           </form>
@@ -85,11 +77,11 @@
             aria-live="polite"
           >
             <!-- 5-day forecast that displays -->
-            <div id="day1" class="card" style="width: 11rem"></div>
-            <div id="day2" class="card" style="width: 11rem"></div>
-            <div id="day3" class="card" style="width: 11rem"></div>
-            <div id="day4" class="card" style="width: 11rem"></div>
-            <div id="day5" class="card" style="width: 11rem"></div>
+            <div id="day1" class="card"></div>
+            <div id="day2" class="card"></div>
+            <div id="day3" class="card"></div>
+            <div id="day4" class="card"></div>
+            <div id="day5" class="card"></div>
           </section>
         </div>
       </div>
